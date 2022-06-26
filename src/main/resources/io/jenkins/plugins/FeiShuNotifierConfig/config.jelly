@@ -1,0 +1,31 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core"   xmlns:f="/lib/form">
+
+    <f:entry title="Webhook" >
+        <f:textbox checkMessage="checkUrl" field="webhook"/>
+    </f:entry>
+    <f:entry title="Message">
+        <f:textarea field="content"/>
+    </f:entry>
+
+    <f:entry title="NoticeOccasions" >
+        <f:checkbox tooltip="构建启动时通知"   title="START"   field="noticeWhenStart"  />
+        <f:checkbox tooltip="构建失败时通知"   title="FAILURE" field="noticeWhenFailure"/>
+        <f:checkbox tooltip="构建不稳定时通知" title="UNSTABLE" field="noticeWhenUnstable"/>
+        <f:checkbox tooltip="构建成功时通知"   title="SUCCESS" field="noticeWhenSuccess"/>
+        <f:checkbox tooltip="构建终止时通知"   title="ABORTED" field="noticeWhenAborted"/>
+    </f:entry>
+
+    <f:entry title="@All" >
+        <f:booleanRadio field="noticeAll"/>
+    </f:entry>
+
+    <f:advanced>
+
+        <f:entry title="Proxy" help="">
+            <f:textbox field="proxy"/>
+        </f:entry>
+        <f:validateButton title="Test Connection" progress="Testing" method="testConnection" with="proxy"/>
+    </f:advanced>
+
+</j:jelly>

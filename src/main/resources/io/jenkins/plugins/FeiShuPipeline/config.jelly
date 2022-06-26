@@ -1,0 +1,26 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core"   xmlns:f="/lib/form">
+
+    <f:entry title="Webhook" >
+        <f:textbox checkMessage="checkUrl" field="webhook"/>
+    </f:entry>
+    <f:entry title="Message">
+        <f:textarea field="msg"/>
+    </f:entry>
+
+    <f:entry title="@All" >
+        <f:booleanRadio field="atAll"/>
+    </f:entry>
+
+    <f:entry title="Type">
+        <f:textbox  field="type" />
+    </f:entry>
+
+    <f:advanced>
+        <f:entry title="Proxy">
+            <f:textbox field="proxy"/>
+        </f:entry>
+        <f:validateButton title="Test Connection" progress="Testing" method="testConnection" with="proxy"/>
+    </f:advanced>
+
+</j:jelly>
