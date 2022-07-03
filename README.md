@@ -6,13 +6,14 @@ Jenkins 构建消息-飞书通知插件
 
 ### FreeStyle风格工程用法
 
-![img.png](img.png)
+![img](https://user-images.githubusercontent.com/53971532/177046892-84c0460f-35e9-4cab-b5a7-1a1c4f30ff5f.png)
+
 
 webhook: 填写飞书群聊机器人的webhook
 
 添加机器人参考: https://www.feishu.cn/hc/zh-CN/articles/360024984973
 
-![img_1.png](img_1.png)
+![img_1](https://user-images.githubusercontent.com/53971532/177046915-f05beb03-4c7f-4508-8915-7e5b95281cb4.png)
 
 Message: 填写自定义通知消息
 
@@ -48,7 +49,7 @@ catchError(message:'xxx',buildResult:'failure',stageResult:'unstable') {
 
 ## 效果
 
-![img_2.png](img_2.png)
+![img_2](https://user-images.githubusercontent.com/53971532/177046910-362054c5-ef15-4639-ae7f-42f13b5f4808.png)
 
 ## Reference
 部分实现参考ding talk消息通知插件
