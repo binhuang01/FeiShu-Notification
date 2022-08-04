@@ -55,5 +55,51 @@ catchError(message:'xxx',buildResult:'failure',stageResult:'unstable') {
 部分实现参考ding talk消息通知插件
 https://github.com/jenkinsci/dingtalk-plugin
 
+## 快速开始
 
+### 使用maven容器编译
+
+```shell
+
+# 下载代码
+git clone https://github.com/binhuang01/FeiShu-Notification.git 
+
+# 启动maven容器
+docker run -it -d --name maven-build maven:3.8.6-jdk-11
+
+# 复制代码到容器内
+docker cp FeiShu-Notification docker maven-build:/tmp
+
+# 进入容器
+docker exec -it maven-build /bin/bash
+
+# 进入代码文件夹
+cd /tmp/FeiShu-Notification
+
+# 下载依赖开始编译，具体时间要看网络状况，网络状况不好的话可以换一下maven源
+nohup mvn install && mvn hpi:hpi -e &
+
+# 查看编译日志（ctrl+c 退出）
+tail -f nohup.out 
+
+[INFO] Installing /tmp/FeiShu-Notification-master/FeiShu-Notification-master/target/FeiShu-Plugin.hpi to /root/.m2/repository/io/jenkins/plugins/FeiShu-Plugin/1.0-SNAPSHOT/FeiShu-Plugin-1.0-SNAPSHOT.hpi
+[INFO] Installing /tmp/FeiShu-Notification-master/FeiShu-Notification-master/pom.xml to /root/.m2/repository/io/jenkins/plugins/FeiShu-Plugin/1.0-SNAPSHOT/FeiShu-Plugin-1.0-SNAPSHOT.pom
+[INFO] Installing /tmp/FeiShu-Notification-master/FeiShu-Notification-master/target/FeiShu-Plugin.jar to /root/.m2/repository/io/jenkins/plugins/FeiShu-Plugin/1.0-SNAPSHOT/FeiShu-Plugin-1.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  58:25 min
+[INFO] Finished at: 2022-08-03T11:21:32Z
+[INFO] ------------------------------------------------------------------------
+
+# 编译完成后退出容器
+exit
+
+# 复制hpi文件到宿主机
+docker cp /tmp/FeiShu-Notification-master/FeiShu-Notification-master/target/FeiShu-Plugin.hpi .
+
+# 测试hpi文件正常后删除容器
+docker rm -f maven-build
+
+```
 
